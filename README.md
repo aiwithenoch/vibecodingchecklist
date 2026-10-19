@@ -8,6 +8,10 @@ An open-source **production engineering and system design checklist** for people
 
 > **Important:** This is a review framework, **not a shopping list**. A simple business app may need secure authorization, idempotent payments, safe database migrations, monitoring, and backups without ever needing Kubernetes, sharding, or distributed sagas.
 
+## Project history & agent handoff
+
+**Continuing work with a coding agent?** First read [AGENTS.md](AGENTS.md), then the complete [CONTEXT.md](CONTEXT.md) and [CHANGELOG.md](CHANGELOG.md). These files preserve the original requested list, all initial 139 published checks, the exact GitHub history, editorial decisions, existing work, current limitations, and the required change protocol. **Do not replace the handoff with a short summary.**
+
 ## Start here
 
 | Resource | What it does |
