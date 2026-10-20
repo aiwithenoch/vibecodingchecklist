@@ -525,3 +525,72 @@ For a request that starts with "continue the vibe coding checklist", do all of t
 8. Never replace this detailed document with a short summary, remove the original requirements, or falsely imply unimplemented functionality exists.
 
 **End of original handoff record. Add new dated sections as the project evolves.**
+
+
+## 14. 2026-10-20 — Performance transcript, Community code audit, and checklist extension
+
+### 14.1 Exact user direction and repository identity
+
+The user supplied a timestamped 29-minute transcript file, asked for it to be checked against the Community code and GitHub, and requested the selected checklist repository be updated without shortening away details or replacing history. The exact request was:
+
+```text
+check this transcript again my code adn also check my github and update my cibe coding checklist repo dont try to summerize pu tall detaisl and memefy globally so all my cidex session can use this
+```
+
+The user then identified the exact target repository:
+
+```text
+thisis the one https://github.com/aiwithenoch/vibecodingchecklist.git
+```
+
+Canonical target: `aiwithenoch/vibecodingchecklist`. This is distinct from any similarly named checklist or system-design repository. Only this user-selected documentation repository is changed by this task.
+
+### 14.2 Supplied transcript provenance and full technical content
+
+- Source attachment: `/Users/admin/.codex/attachments/f44eee22-7259-4ad6-bd54-805060355a42/Pasted text.txt`.
+- The attachment is a timestamped transcript from 00:00 through 29:00, approximately 147 lines and 24,937 bytes. It describes a Lovable/React performance demonstration, not a measured audit of Enoch's deployed Community application.
+- The full timecoded evidence map is in `checklists/PERFORMANCE-AND-RENDERING.md`. It preserves the complete sequence and the implementation failures/caveats rather than presenting only the video's final claim. Key phases:
+  - 00:00–01:43: page seems slow/flashes; presenter inspects browser Network; separates hover-triggered image prefetch from first-load requests; reports many initial image requests.
+  - 01:44–04:51: adds native lazy loading, then says requests/scroll behavior remain confusing; suggests possible prefetch and missing dimensions. Those are hypotheses until actual requests/markup are inspected.
+  - 04:52–06:35: proposes width/height, CSS aspect ratio, optional IntersectionObserver; presenter later reports more progressive loading but provides no request totals or timings.
+  - 06:36–12:21: host/camera slows; asks an AI to inspect rerenders, memory leaks, listeners, context and inline style objects; suspects React effect/state issues and claims listeners/recursive work exhaust memory. No profiler, heap timeline, controlled comparison, or leak proof is shown.
+  - 12:22–15:23: sees roughly 100 DOM list items and suggests “never more than 12” via virtual scrolling; the first implementation has non-working scroll events, flashing, and poor behavior. The number is an example, not a universal target.
+  - 15:24–18:30: reports animation replay on remount, staggered fade, state reset, closures, masonry/row-virtualizer geometry mismatch; proposes larger overscan and less animation.
+  - 18:31–20:25: scroll appears stuck and more items stop loading; diagnosis is speculative and needs instrumentation at the visible-range/continuation boundary.
+  - 20:26–22:29: suggests viewport-dependent overscan and loading ahead, while overgeneralizing that every app needs virtualization.
+  - 23:09–25:32: later attempt adds skeletons but has sideways grid behavior; shifts to normal rows and complete-row/visible-range calculation.
+  - 25:33–29:00: reports down/up scrolling and DOM recycling, inspects nodes, and ends by warning about cleanup/memory. These are qualitative claims, not measured before/after results.
+- Important corrections encoded in the guide: intrinsic dimensions/aspect ratios reserve layout and reduce layout shift and can prevent zero-size lazy-image cases; they are not the sole explanation for every eager request. Native loading thresholds vary by browser. Check preload/prefetch, CSS backgrounds, mount behavior, actual viewport and request initiators. Lazy-load only appropriate offscreen content; do not delay the important LCP image.
+- Virtualization is conditional on measured DOM/render work. It does not reduce database/API payload or full in-memory arrays by itself. There is no universal “12 items” cap or requirement to virtualize every app. Stable keys, complete row geometry, adaptive overscan, scroll-up/down, loading continuation, focus/accessibility, state preservation, remount animations, and observer/listener cleanup are required validation cases.
+- The transcript does not contain controlled request counts, bytes, LCP/INP/CLS numbers, device/network configuration, heap evidence, production traffic, or a verified library. Its claims cannot be used as test results for Enoch's code.
+
+### 14.3 Community application code audit scope and limitations
+
+- The separate local application checkout audited read-only is `/Users/admin/Documents/Codex/2026-08-11/ne/frappe-lms`, branch `develop`, starting commit `91bc5478a766a111fc163d906274848c157bd978`. It already had 295 modified/untracked paths. Preserve all existing changes.
+- The source-level evidence and detailed app-specific findings are appended to that project's `frontend/changelog.md`; the public checklist repo does not publish uncommitted application findings. No application source, database, payment state, provider configuration, or deployment was changed in this task.
+- A separate GitHub source repo, `aiwithenoch/ai-with-enoch-community`, was inspected at main tree commit `e33ce865d106e7aa0e911a22d576ea0c6cbfbc9a`. Its README describes a Frappe LMS Community UI preview using sample data while the Frappe backend is not connected. Do not treat this preview commit as proof of the deployed application's runtime or backend.
+- No browser Network/Performance recording, field Web Vitals, heap timeline, realistic load test, or performance change was run for this transcript review. Any previous build or production audit entry in the Community project's changelog is separate and should not be presented as if rerun here.
+- Framework-specific caution: the user app is Vue 3, whereas the transcript's AI discussion references React hooks. Use lifecycle cleanup and profiling appropriate to the actual framework; do not cargo-cult useEffect/useState advice into Vue.
+
+### 14.4 Exact checklist-repository changes
+
+This documentation-only update is on branch `docs/performance-rendering-review`, based on main commit `67c3128bd6b643eea2129f1862a703e6237e22f6`:
+
+- Added `checklists/PERFORMANCE-AND-RENDERING.md`: baseline methodology; request/asset measurement; cold/warm/cache and hover/prefetch separation; image sizing/responsive loading; media/iframe handling; N+1 versus large batch responses; DB/API/UI bounds and cursor pagination; measured virtualization; scroll/geometry/accessibility tests; profiler-guided re-rendering; lifecycle cleanup; acceptance matrix; transcript timecode evidence map; and primary technical references.
+- Updated `README.md` with a resource link.
+- Updated `AGENTS.md` to require evidence-first performance review and link the new guide.
+- Updated `checklists/LAUNCH.md` with critical resource, pagination/render, lifecycle, and justified-virtualization checks.
+- Updated `templates/PROJECT-AUDIT.md` with page-load/media and bounded-data/rendering evidence rows.
+- Updated `prompts/AI-AUDIT-PROMPT.md` with the new guide and specific performance evidence requests.
+- Appended this detailed record to `CONTEXT.md` and a dated entry to `CHANGELOG.md`; prior content remains intact.
+- Left `checklists/111-CONCEPTS.md`, `checklists/ESSENTIALS.md`, and `checklists/TOPICS.csv` untouched. The pre-edit counts were 111, 28, and 139 records respectively. This is a deeper practical guide to existing topics, not an expansion of the taxonomy.
+- Primary references reviewed: MDN image/lazy-loading/observer/listener documentation, Vue performance guidance, and Chrome DevTools Network/Performance guidance.
+
+### 14.5 Validation record and next agent actions
+
+- Before editing, read all 528 lines of `CONTEXT.md`, all of `AGENTS.md`, all of `CHANGELOG.md`, the full README, and all affected launch checklist, essentials, AI prompt, report template, original topic file, and CSV. Repository instructions require this complete-read workflow.
+- Confirmed GitHub repository owner/account `aiwithenoch`, public visibility, write permission, default branch `main`, and no open PR at the time of inspection.
+- Created branch `docs/performance-rendering-review` from `67c3128bd6b643eea2129f1862a703e6237e22f6`. Main was not directly edited. Each of the eight documentation writes must be read back before the PR is described as complete.
+- Re-validate relative Markdown links and the existing inventory counts 111 + 28 = 139. Confirm the CSV header and data rows are unchanged. Check all staged branch file contents against intended content.
+- Open a pull request only after read-back verification. The public main branch will remain unchanged unless that PR is merged. Do not claim the app was made faster; this work updates the review process only.
+- Memfy must store the original user request/correction, supplied transcript provenance, complete relevant conversation evidence, application audit scope/results, precise repository/branch/files, validation, and final PR status so other Codex sessions can retrieve it without replacing the raw historical record.
