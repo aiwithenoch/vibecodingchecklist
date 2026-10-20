@@ -25,6 +25,7 @@ Describe entry points, data stores, trust boundaries, background jobs, external 
 | Backups and restoration | UNKNOWN | High | | | |
 | Deployment and rollback | UNKNOWN | Medium | | | |
 | Monitoring and incident response | UNKNOWN | Medium | | | |
+| Bounded queries, pagination, and large-list rendering | UNKNOWN | Medium | | | | requests, image/media behavior, and layout stability | UNKNOWN | Medium | | | |
 
 ## Release decision
 
