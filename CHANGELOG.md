@@ -94,3 +94,35 @@ The repository currently does not use numbered software releases or semantic ver
 5. Preserve past dated entries; do **not** collapse them into one summary.
 6. Add corresponding facts to `CONTEXT.md` when project scope, architecture, files, rules, or unresolved work changes.
 7. Only claim publication, testing, or deployment when the relevant external action succeeded and was verified.
+
+
+## 2026-10-20 — Add detailed performance and rendering review
+
+**User request:** Re-check a supplied performance-video transcript against the Community code, check GitHub, update the exact repository `https://github.com/aiwithenoch/vibecodingchecklist.git`, preserve all useful details instead of shortening the handoff, and save reusable context globally through Memfy.
+
+### Added
+- `checklists/PERFORMANCE-AND-RENDERING.md` — a detailed framework-neutral review procedure covering baseline measurement; cold/warm cache and hover/prefetch separation; browser Network and Performance evidence; image priority, dimensions, responsive variants and lazy loading; video/iframe deferral; bounded APIs, N+1 versus large batched payloads, database plans and cursor pagination; measured list virtualization; accessibility/state/scroll regressions; render profiling; listener/timer/observer/fetch cleanup; acceptance matrix; and a timecoded evidence map for the entire supplied 00:00–29:00 transcript.
+
+### Changed
+- `README.md` — added the new guide to the public resource table.
+- `AGENTS.md` — directs agents performing performance work to measure first and avoid unconditional virtualization/fixed DOM caps; added the guide to the resource map.
+- `checklists/LAUNCH.md` — added measurable critical-resource, pagination, render/lifecycle, and virtualization checks with a link to the detailed guide.
+- `templates/PROJECT-AUDIT.md` — added evidence rows for page-load media/layout and bounded queries/large-list rendering.
+- `prompts/AI-AUDIT-PROMPT.md` — added the performance guide to the reading list and specific evidence requests for image/media requests, payloads, pagination, rendering, main-thread work, and resource cleanup.
+- `CONTEXT.md` — appended the exact user direction, transcript provenance and timecoded findings, code/GitHub audit scope, decisions, limitations, and handoff state. Existing handoff sections remain unchanged.
+
+### Technical/editorial decisions
+- The transcript's image-dimensions insight is presented accurately: width/height or CSS aspect ratio reserve layout and prevent shifts, and can prevent zero-size lazy-image edge cases; missing dimensions are not treated as the universal explanation for eager requests.
+- Native browser lazy loading is the default starting point. A custom IntersectionObserver, list virtualizer, worker, queue, cache, or index is conditional on evidence and must be lifecycle-safe and tested.
+- The transcript's “never more than 12” target and “every app needs virtual scrolling” claim are explicitly rejected as universal rules. Its reported broken/stuck loading, flicker, repeated mount animations, responsive buffer changes, masonry/row geometry conflict, scrolling both directions, and cleanup warning are preserved in the timecoded review.
+- The user-selected repository is this repo only. Changes are on branch `docs/performance-rendering-review` from main commit `67c3128bd6b643eea2129f1862a703e6237e22f6`; `main` was not modified directly.
+- The existing initial topic inventory is unchanged: 111 original topics + 28 essentials = 139 CSV records. This is a supplemental procedure, not an addition to the counted topic taxonomy; `checklists/TOPICS.csv`, `checklists/111-CONCEPTS.md`, and `checklists/ESSENTIALS.md` remain untouched.
+- The supplied transcript is a user attachment, not a public source URL; its reusable detailed evidence map is included in the new guide without publishing the raw attachment.
+- The application-specific source audit stays in the Community project's local `frontend/changelog.md` and private durable context rather than publishing uncommitted implementation findings in this public checklist repository.
+
+### Verification and scope limits
+- Read the full `AGENTS.md`, `CONTEXT.md` (528 lines), `CHANGELOG.md`, README, and affected checklist/prompt/template files before editing. Confirmed GitHub repository is public, owned by `aiwithenoch`, writable, and targets default branch `main`.
+- Confirmed pre-change inventory counts: 111 original Markdown checkboxes, 28 essentials, and 139 CSV data records. No count was altered.
+- Verified the technical references against official MDN, Vue, and Chrome DevTools documentation before adding links.
+- After all updates, read back affected files from this branch, validate relative Markdown links and the 111/28/139 inventory, then open a PR for review. This is documentation only: no app implementation, production data, deployment, load test, browser trace, or runtime test is claimed by this repository change.
+- GitHub branch writes and read-back/PR results are recorded in the appended context after the actions succeed; do not claim completion if any GitHub API call or read-back fails.
