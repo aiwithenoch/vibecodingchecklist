@@ -17,6 +17,7 @@ An open-source **production engineering and system design checklist** for people
 | Resource | What it does |
 | --- | --- |
 | [🚀 Production launch checklist](checklists/LAUNCH.md) | Practical release-readiness checks |
+| [⚡ Performance and rendering review](checklists/PERFORMANCE-AND-RENDERING.md) | Measure image, data, rendering, virtualization, and lifecycle risks |
 | [🧩 111 system design concepts](checklists/111-CONCEPTS.md) | Grouped, testable engineering topics |
 | [🧱 28 additional essentials](checklists/ESSENTIALS.md) | Testing, data integrity, AI code verification, and more |
 | [📚 Learning roadmap](checklists/LEARNING-ROADMAP.md) | Build skills progressively through projects |
