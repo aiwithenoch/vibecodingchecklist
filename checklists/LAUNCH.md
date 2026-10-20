@@ -31,6 +31,11 @@ Use `N/A — reason` for controls that do not apply. Include links to tests, con
 
 ## Reliability and performance
 - [ ] External calls have deadlines and safe bounded retries.
+- [ ] Critical image/media requests, layout reservation, and first-screen loading are measured on cold and warm visits.
+- [ ] Large API/database results and rendered lists are bounded or paginated; limits do not silently hide required records.
+- [ ] Main-thread/rendering cost and long-session resource cleanup are profiled for critical user journeys.
+- [ ] Virtualization is used only when measured DOM/render cost justifies it, and scrolling, focus, accessibility, state, and loading have been tested.
+- [ ] Detailed evidence recorded using [Performance and Rendering Review](PERFORMANCE-AND-RENDERING.md).
 - [ ] Scheduled and queued jobs are idempotent, when used.
 - [ ] Expected traffic and bottlenecks are measured or documented.
 - [ ] Sensitive public endpoints have abuse protections.
