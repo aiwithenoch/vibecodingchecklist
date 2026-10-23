@@ -651,3 +651,10 @@ The implementation branch is `docs/security-audit-skill-integration`. The final 
 - Branch `docs/security-audit-skill-integration` was pushed to origin and [PR #4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4) was opened against `main`. The PR is open, not merged, and no main-branch change is claimed.
 - Remote branch commit and local commit match. GitHub Contents API read-back matched local blob hashes for all eight changed paths: `AGENTS.md`, `CHANGELOG.md`, `CONTEXT.md`, `README.md`, `checklists/LAUNCH.md`, `checklists/SECURITY-AUDIT.md`, `prompts/AI-AUDIT-PROMPT.md`, and `templates/PROJECT-AUDIT.md`.
 - At verification, GitHub `main` was `a91b13e7b09e0a9686155bf678a8293a57e3be20`. The local Python 3 inventory/link checks and `git diff --check` passed. No application test, live security test, external endpoint probe, deployment, or security certification was performed.
+
+### 15.7 Merge result and standing publication preference
+
+- The user has explicitly instructed that requested repository changes should be pushed to `main` by default. Future work should still preserve the repository's verification and changelog requirements, but should not leave a completed requested change only on a feature branch unless the user asks for that.
+- PR [#4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4) is merged. GitHub's squash merge commit is `acb6341624ee9246d2ee67f4f448229f6d01a615`; the merged PR head is `06fa7b00ad30461bf3ffff20c1306227f83cd487`.
+- Local `main` was fast-forwarded to the remote merge commit and is clean. The eight security-audit documentation paths were present on `main`, and the 111/28/139 inventory remained unchanged.
+- This publication changes only the checklist documentation. It does not claim that the Community application was audited, that a live security issue was fixed, or that a production deployment was performed.

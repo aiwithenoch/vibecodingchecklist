@@ -190,3 +190,12 @@ The repository currently does not use numbered software releases or semantic ver
 - Verified the remote branch commit equals the local commit. Read back all eight affected paths through the GitHub Contents API and confirmed each remote blob hash matches the checked-out file: `AGENTS.md`, `CHANGELOG.md`, `CONTEXT.md`, `README.md`, `checklists/LAUNCH.md`, `checklists/SECURITY-AUDIT.md`, `prompts/AI-AUDIT-PROMPT.md`, and `templates/PROJECT-AUDIT.md`.
 - GitHub `main` remains at `a91b13e7b09e0a9686155bf678a8293a57e3be20`; no main-branch publication or merge is claimed.
 - The change remains documentation-only. No external application audit, live security test, production probe, deployment, or security certification occurred.
+
+## 2026-10-23 — Merge security-audit integration into main
+
+- User instruction: push requested repository changes to `main` by default unless the user explicitly says otherwise.
+- Verified PR [#4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4) was merged by squash into `main` at GitHub merge commit `acb6341624ee9246d2ee67f4f448229f6d01a615`; the merged PR head was `06fa7b00ad30461bf3ffff20c1306227f83cd487`.
+- Fast-forwarded the local `main` branch from `a91b13e7b09e0a9686155bf678a8293a57e3be20` to `acb6341624ee9246d2ee67f4f448229f6d01a615` and verified the working tree is clean.
+- Confirmed `main` contains the eight affected documentation paths, including `checklists/SECURITY-AUDIT.md`, and retained the unchanged 111 original checklist items, 28 additional essentials, and 139 CSV records.
+- The first ad hoc validation invocation failed because its checker incorrectly expected checkbox text in `AGENTS.md`; the second exposed an incorrect expected `TOPICS.csv` header in that checker. Both were checker mistakes, not repository failures. After correcting the checker to the actual header (`Type, Section, Topic, Priority, Practical check`), documentation validation passed and `git diff --check` passed.
+- No application runtime, live endpoint, payment system, production deployment, or external security audit was performed.
