@@ -603,3 +603,51 @@ This documentation-only update is on branch `docs/performance-rendering-review`,
 - Read-back: all 11 checked files matched their intended contents. Relative Markdown paths in the changed docs resolved. The 111 and 28 Markdown checklist counts and 139-record CSV stayed unchanged; no inventory file was modified.
 - GitHub reported no workflow runs for the PR head. Documentation/static link/count checks were performed; no application test suite, browser performance trace, or production load benchmark was run.
 - The selected repository's main branch now contains the documentation update. The Community application's working tree remains unchanged by this checklist work, and no deployment occurred.
+
+## 15. 2026-10-23 — Cloudflare security-audit skill integration
+
+### 15.1 User direction and source identity
+
+The user requested:
+
+```text
+improve the vibecodeing chelis t with this skill gh repo clone cloudflare/security-audit-skill
+```
+
+The target remains the exact public repository `https://github.com/aiwithenoch/vibecodingchecklist.git`. The upstream reference was cloned beside the target at `/Users/admin/Documents/Codex/2026-09-19/op/security-audit-skill` using `gh repo clone cloudflare/security-audit-skill`. The inspected upstream commit is `c1c8a8c` (`Clarify guidance and full audit modes`). The upstream repository is reference material only; it is not vendored as executable code into this documentation repository.
+
+### 15.2 Upstream principles carried into this repository
+
+The security-audit skill separates guidance mode from an explicitly requested full audit. It requires a source-first trust-boundary review, safe local execution, deterministic coverage, adversarial validation, structured verdicts, and target-neutral reporting. The important distinctions preserved here are:
+
+- A security candidate needs a lower-trust principal, accepted input/action, intended control, crossed boundary, affected resource, and bounded observable result.
+- Missing headers, rate limits, dependencies, isolation layers, deployment settings, or defense-in-depth controls are not automatically vulnerabilities.
+- `confirmed` requires complete source evidence and bounded result; `needs_validation` names a precise unknown deployment/local fact and safe resolution plan; `rejected` records a disproved claim. Only confirmed records receive severity.
+- Live endpoints, production identities, shared infrastructure, real user data, paid quotas, and live control planes are out of bounds. Target-controlled execution requires an OS-enforced sandbox, dummy data, read-only target/toolchain, scratch-only writes, and resource limits; otherwise execution stops and the missing sandbox capability is a blocker.
+- Full audits use deterministic coverage units and fresh independent reviewers. Prior runs are additive: changed-source or unresolved work is reopened rather than silently treated as covered.
+- Web/auth, client/browser, data/lifecycle, cloud/deployment, supply chain/release, AI/LLM/MCP, protocols/messaging, and resource-exhaustion domains are reviewed only when relevant to the target. The upstream native/binary and desktop/mobile domains remain available for applicable projects.
+
+### 15.3 Exact target-repository changes in this integration
+
+- Added `checklists/SECURITY-AUDIT.md`, a detailed evidence-first review procedure covering scope/mode selection, sandbox safety, reconnaissance, coverage ledger fields and profiles, web/auth, browser, data lifecycle, cloud/deployment, supply chain, AI/LLM/MCP, protocols/messaging, availability, candidate verdicts, independent validation, report artifacts, and a practical worksheet.
+- Updated `README.md` with a Security Audit Review resource link.
+- Updated `AGENTS.md` to route security work through the new guide, distinguish guidance from full audits, forbid live/shared probing, and require `needs_validation` for deployment-dependent facts.
+- Updated `checklists/LAUNCH.md` with source-first security evidence, candidate-verdict separation, and unknown deployment-control checks.
+- Updated `prompts/AI-AUDIT-PROMPT.md` with the security guide, mode/sandbox rules, boundary-evidence requirements, verdict discipline, and alternate/delegated path review.
+- Updated `templates/PROJECT-AUDIT.md` with security mode/profile/scope fields, coverage references, the candidate evidence contract, verdict table, unknown validation plans, and deferred/out-of-scope fields.
+- `checklists/111-CONCEPTS.md`, `checklists/ESSENTIALS.md`, and `checklists/TOPICS.csv` are intentionally unchanged. This is a deeper procedure for existing topics, not an expansion of the 111 + 28 = 139 taxonomy.
+
+### 15.4 Scope and non-claims
+
+This work updates documentation only. No external application was audited, no production endpoint was contacted, no live security finding was produced, no application source or deployment was changed, and no target was certified secure. Future agents must still read the actual target source, establish the relevant boundaries, and record evidence before using this guide to report a vulnerability.
+
+### 15.5 Verification and handoff
+
+The implementation branch is `docs/security-audit-skill-integration`. The final dated `CHANGELOG.md` entry must record the documentation inventory counts, relative-link validation, read-back of affected files, commit/branch publication result, and any deferred validation. The next agent should begin with `git status --short --branch`, inspect the final changelog entry, and verify the public branch before claiming publication.
+
+### 15.6 Branch publication after local and GitHub verification
+
+- The implementation was committed as `d7886045acd075998855e48a936d49b2ed7f4274` with message `docs: add evidence-first security audit review`.
+- Branch `docs/security-audit-skill-integration` was pushed to origin and [PR #4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4) was opened against `main`. The PR is open, not merged, and no main-branch change is claimed.
+- Remote branch commit and local commit match. GitHub Contents API read-back matched local blob hashes for all eight changed paths: `AGENTS.md`, `CHANGELOG.md`, `CONTEXT.md`, `README.md`, `checklists/LAUNCH.md`, `checklists/SECURITY-AUDIT.md`, `prompts/AI-AUDIT-PROMPT.md`, and `templates/PROJECT-AUDIT.md`.
+- At verification, GitHub `main` was `a91b13e7b09e0a9686155bf678a8293a57e3be20`. The local Python 3 inventory/link checks and `git diff --check` passed. No application test, live security test, external endpoint probe, deployment, or security certification was performed.

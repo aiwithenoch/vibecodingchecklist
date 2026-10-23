@@ -136,3 +136,57 @@ The repository currently does not use numbered software releases or semantic ver
 - Validation: existing Markdown checklist counts remain 111 + 28; CSV remains 139 data records; local relative links across the changed Markdown files resolved to repository paths; the detailed new guide matched its intended content exactly.
 - The PR head had no associated GitHub Actions workflow runs. This change contains documentation only; no software tests, production browser traces, load tests, app code changes, or performance improvements are claimed.
 - Community application-specific findings remain in its local `frontend/changelog.md` and global Memfy context, not in the public checklist content. No source application, database, payment/provider setting, or deployment was modified.
+
+## 2026-10-23 — Start Cloudflare security-audit skill integration
+
+**User request:** Improve the Vibe Coding Checklist using `cloudflare/security-audit-skill`, cloned with `gh repo clone cloudflare/security-audit-skill`.
+
+### Starting state and scope
+- Target repository: `aiwithenoch/vibecodingchecklist`, checked out on a clean `main` worktree before edits.
+- Upstream reference clone: `/Users/admin/Documents/Codex/2026-09-19/op/security-audit-skill`, at Cloudflare commit `c1c8a8c` (`Clarify guidance and full audit modes`). The clone is external reference material and is not being copied into this repository as executable code.
+- Read the target repository's complete `AGENTS.md`, `CONTEXT.md`, `CHANGELOG.md`, README, current checklists, audit prompt, report template, and topic CSV before editing.
+- Read the upstream security-audit skill instructions and the relevant reconnaissance, hunting, validation/reporting, web/auth, client-side, cloud/deployment, data-lifecycle, supply-chain, AI/LLM, protocol/messaging, and resource-exhaustion guidance.
+
+### Intended change
+- Add an evidence-first, source-grounded security audit guide that translates the upstream skill's boundary, safety, coverage, validation, and reporting discipline into this documentation-first checklist.
+- Link the guide from the README and agent routing, and connect it to launch reviews, the AI audit prompt, and the project audit template.
+- Preserve the existing 111 original topics, 28 additional fundamentals, 139 CSV records, and the principle that a missing best practice is not automatically a vulnerability.
+
+### Not done yet
+- No target application was audited, no live endpoint was probed, no deployed system was changed, and no security finding is being claimed by this documentation update.
+- The implementation, verification, branch publication, and final GitHub state are recorded in a later dated entry.
+
+## 2026-10-23 — Implement the security-audit review integration
+
+### Added
+- `checklists/SECURITY-AUDIT.md` — 233-line supplemental guide adapted from Cloudflare's `security-audit-skill` reference commit `c1c8a8c`. It covers guidance/full-audit mode selection; source/ref/scope capture; sandbox and live-system safety; architecture/trust-boundary reconnaissance; deterministic coverage ledgers; web/auth, browser, data lifecycle, cloud/deployment, supply chain, AI/LLM/MCP, protocol/messaging, and availability attack classes; candidate verdicts; fresh independent validation; structured report artifacts; and a practical worksheet.
+
+### Changed
+- `README.md` — added the Security Audit Review to the public resource map.
+- `AGENTS.md` — routed security work through the guide, required concrete boundary evidence, and prohibited live/shared probing.
+- `checklists/LAUNCH.md` — added source-first security evidence, verdict separation, and explicit treatment of unknown deployment controls.
+- `prompts/AI-AUDIT-PROMPT.md` — added security mode/sandbox instructions, the candidate evidence contract, `confirmed`/`needs_validation`/`rejected` discipline, and alternate/delegated path review.
+- `templates/PROJECT-AUDIT.md` — added security mode/profile/scope fields, coverage references, candidate evidence columns, and unknown/deferred coverage fields.
+- `CONTEXT.md` — appended the complete source identity, adopted principles, file-level decisions, scope limits, and handoff facts.
+
+### Decisions and scope
+- This is a documentation/procedure improvement, not an automated scanner and not a security audit of an external application.
+- The original 111 concepts, 28 essentials, and 139 CSV records remain unchanged; the new guide deepens review method rather than expanding the taxonomy.
+- The upstream clone remains outside the target repository and no upstream executable files were copied into the public checklist.
+- No live endpoint, production identity, shared service, customer data, paid quota, application source, database, deployment, or release was contacted or changed.
+
+### Verification
+- Initial `python` inventory command was unavailable in the shell; the same validation was rerun with `python3`.
+- `python3` documentation validation passed: 111 original checkboxes, 28 additional checkboxes, 139 CSV records, correct CSV header/type counts, no case-insensitive CSV topic duplicates, all required files present, and all relative Markdown links resolved.
+- `git diff --check` passed after removing template trailing whitespace.
+- No application build or runtime/security test was run because this repository contains documentation and checklists only. The upstream validators were not run because this change did not create a `findings.json` or `coverage-ledger.json` audit run.
+- Current state at this entry: local branch `docs/security-audit-skill-integration` contains the implementation; GitHub publication and remote read-back remain to be recorded separately.
+
+## 2026-10-23 — Publish and verify the security-audit integration branch
+
+- Committed the documentation update as `d7886045acd075998855e48a936d49b2ed7f4274` with message `docs: add evidence-first security audit review`.
+- Pushed branch `docs/security-audit-skill-integration` to the repository's origin without force-pushing or modifying `main`.
+- Opened [PR #4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4), targeting `main`; the PR is open and not merged at this entry.
+- Verified the remote branch commit equals the local commit. Read back all eight affected paths through the GitHub Contents API and confirmed each remote blob hash matches the checked-out file: `AGENTS.md`, `CHANGELOG.md`, `CONTEXT.md`, `README.md`, `checklists/LAUNCH.md`, `checklists/SECURITY-AUDIT.md`, `prompts/AI-AUDIT-PROMPT.md`, and `templates/PROJECT-AUDIT.md`.
+- GitHub `main` remains at `a91b13e7b09e0a9686155bf678a8293a57e3be20`; no main-branch publication or merge is claimed.
+- The change remains documentation-only. No external application audit, live security test, production probe, deployment, or security certification occurred.
