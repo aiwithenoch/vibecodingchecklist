@@ -644,3 +644,10 @@ This work updates documentation only. No external application was audited, no pr
 ### 15.5 Verification and handoff
 
 The implementation branch is `docs/security-audit-skill-integration`. The final dated `CHANGELOG.md` entry must record the documentation inventory counts, relative-link validation, read-back of affected files, commit/branch publication result, and any deferred validation. The next agent should begin with `git status --short --branch`, inspect the final changelog entry, and verify the public branch before claiming publication.
+
+### 15.6 Branch publication after local and GitHub verification
+
+- The implementation was committed as `d7886045acd075998855e48a936d49b2ed7f4274` with message `docs: add evidence-first security audit review`.
+- Branch `docs/security-audit-skill-integration` was pushed to origin and [PR #4](https://github.com/aiwithenoch/vibecodingchecklist/pull/4) was opened against `main`. The PR is open, not merged, and no main-branch change is claimed.
+- Remote branch commit and local commit match. GitHub Contents API read-back matched local blob hashes for all eight changed paths: `AGENTS.md`, `CHANGELOG.md`, `CONTEXT.md`, `README.md`, `checklists/LAUNCH.md`, `checklists/SECURITY-AUDIT.md`, `prompts/AI-AUDIT-PROMPT.md`, and `templates/PROJECT-AUDIT.md`.
+- At verification, GitHub `main` was `a91b13e7b09e0a9686155bf678a8293a57e3be20`. The local Python 3 inventory/link checks and `git diff --check` passed. No application test, live security test, external endpoint probe, deployment, or security certification was performed.
