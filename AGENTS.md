@@ -17,6 +17,7 @@ These instructions apply to the **entire** `aiwithenoch/vibecodingchecklist` rep
 - Preserve the original **111-topic** inventory and **28 extra fundamentals** unless the user explicitly requests a change. Keep Markdown topics, CSV rows, and README counts synchronized.
 - Every check should be understandable, testable, and relevant to real production risks. **N/A with rationale** is valid. Do not demand Kubernetes, microservices, distributed sagas, caching, etc. for every application.
 - For performance/rendering work, read [the performance review](checklists/PERFORMANCE-AND-RENDERING.md), measure the actual target journey first, and record risks separately from measured failures. Never require virtualization or a fixed DOM/item cap without evidence.
+- For security-review work, read [the security audit review](checklists/SECURITY-AUDIT.md), distinguish guidance mode from an explicitly requested full audit, and require a lower-trust principal, concrete boundary, affected resource, and bounded evidence before calling anything a vulnerability. Never probe live or shared systems; mark deployment-dependent facts as `needs_validation`.
 - In audits, distinguish `PASS`, `FAIL`, `UNKNOWN`, and `N/A`, give file/line evidence, and never invent proof. Do not modify an audited user's project without authorization.
 - Never put secrets, private tokens, user/customer data, or credentials in examples, prompts, documentation, or logs.
 - Keep changes scoped and inspect unexpected existing modifications. Avoid force-pushing or overwriting concurrent edits.
@@ -37,6 +38,7 @@ These instructions apply to the **entire** `aiwithenoch/vibecodingchecklist` rep
 - [Original 111 topics](checklists/111-CONCEPTS.md)
 - [28 additional fundamentals](checklists/ESSENTIALS.md)
 - [Production launch review](checklists/LAUNCH.md)
+- [Security audit review](checklists/SECURITY-AUDIT.md)
 - [Performance and rendering review](checklists/PERFORMANCE-AND-RENDERING.md)
 - [Learning roadmap](checklists/LEARNING-ROADMAP.md)
 - [AI audit prompt](prompts/AI-AUDIT-PROMPT.md)

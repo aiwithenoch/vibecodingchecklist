@@ -21,6 +21,9 @@ Use `N/A — reason` for controls that do not apply. Include links to tests, con
 - [ ] API/database queries are bounded and paginated.
 
 ## Security
+- [ ] A source-first security review mapped lower-trust inputs to sensitive operations and recorded exact evidence; see [Security Audit Review](SECURITY-AUDIT.md).
+- [ ] Security candidates are separated into `confirmed`, `needs_validation`, and `rejected`; only confirmed findings receive severity.
+- [ ] Unknown proxy, identity-provider, cloud, broker, browser, or deployment controls are recorded as unknowns with an owner-observed validation plan rather than guessed.
 - [ ] No secrets in repositories, client code, or logs.
 - [ ] Production access follows least privilege.
 - [ ] HTTPS/TLS is configured; stored sensitive data is protected.
